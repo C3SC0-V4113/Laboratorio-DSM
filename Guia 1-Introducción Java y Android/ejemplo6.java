@@ -15,10 +15,10 @@ public class ejemplo6 {
         } while (valor!=0);
         if (cant!=0) {
             promedio=suma/cant;
-            System.out.print("El promedio de los valores ingresados es:");
+            System.out.print("El promedio de los valores ingresados es: ");
             System.out.print(promedio);
         } else {
-            System.out.print("No se ingresaron valores");
+            System.out.print("No se ingresaron valores.");
         }
     }
 }
