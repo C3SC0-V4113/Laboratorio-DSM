@@ -12,6 +12,8 @@ public class divisibles{
 
         //Proceso de datos
         int residuo=dividendo%divisor;
+
+        //Salida de datos
         if (residuo==0) {
             System.out.println("No hay residuo, por lo tanto son divisibles");
         } else {
