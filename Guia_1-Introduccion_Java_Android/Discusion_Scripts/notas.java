@@ -22,7 +22,7 @@ public class notas {
             estudiantes[i]=estudiante;
         }
         //Lazo for de Proceso y Salida
-        System.out.println("Datos de los estudiantes");
+        System.out.println("\n\nDatos de los estudiantes");
         for (int i = 0; i < estudiantes.length; i++) {
             if (estudiantes[i].getNota()>=7) {
                 aprobados++;
