@@ -5,22 +5,33 @@ public class notas {
     public static void main(String[] args) {
         //Creando elemento scanner
         Scanner in=new Scanner(System.in);
-        Estudiante[] estudiantes;
-
-        for (int i = 0; i < 2; i++) {
+        //Variables necesarias
+        Estudiante[] estudiantes=new Estudiante[10];
+        int aprobados=0;
+        int reprobados=0;
+        //Lazo for de Entradas
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Alumno "+(i+1));
             System.out.print("Escribe el nombre: ");
             String nombre=in.nextLine();
             System.out.print("Escribe el apellido: ");
             String apellido=in.nextLine();
             System.out.print("Escribe la nota final: ");
-            int nota=in.nextInt();
+            int nota=Integer.parseInt(in.nextLine());
             Estudiante estudiante=new Estudiante(nombre, apellido, nota);
             estudiantes[i]=estudiante;
         }
-        
+        //Lazo for de Proceso y Salida
+        System.out.println("Datos de los estudiantes");
         for (int i = 0; i < estudiantes.length; i++) {
-            System.out.print(estudiantes[i].NombreCompleto());
+            if (estudiantes[i].getNota()>=7) {
+                aprobados++;
+            } else {
+                reprobados++;
+            }
+            System.out.println(estudiantes[i].NombreCompleto());
         }
+        System.out.println("\nEstudiantes aprobados: "+(aprobados)+", estudiantes reprobados: "+(reprobados));
         
     }
 
@@ -55,7 +66,7 @@ class Estudiante{
         this.apellido=apellido;
     }
 
-    public Int getNota(){
+    public Integer getNota(){
         return nota;
     }
     public void setNota(Integer nota){
@@ -63,6 +74,6 @@ class Estudiante{
     }
 
     public String NombreCompleto(){
-        return "Nombre: "+(this.nombre)+" "+(this.apellido);
+        return "Nombre: "+(this.nombre)+" "+(this.apellido)+", Nota: "+(this.nota);
     }
 }
