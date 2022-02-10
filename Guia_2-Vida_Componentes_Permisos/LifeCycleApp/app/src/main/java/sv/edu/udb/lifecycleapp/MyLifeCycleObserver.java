@@ -1,15 +1,15 @@
 package sv.edu.udb.lifecycleapp;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
 
-public class MyLifeCycleObserver implements LyfecycleObserver{
+public class MyLifeCycleObserver implements LifecycleObserver{
     private static final String TAG="MyLifeCycleObserver";
     private MainActivity obj;
 
