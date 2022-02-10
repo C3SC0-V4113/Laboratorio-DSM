@@ -7,7 +7,7 @@ public class parimpar {
         int par=0;
         int impar=0;
         //Obtener la cantidad n
-        System.out.print("Escribe la cantidad de datos: \n");
+        System.out.print("Escribe la cantidad de datos: ");
         int n=in.nextInt();
         for (int i = 0; i < n; i++) {
             System.out.print("Ingresa el dato "+(i+1)+": ");
