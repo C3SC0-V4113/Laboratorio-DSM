@@ -4,40 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity2">
 
-    <EditText
-        android:id="@+id/txtNombre"
+    <TextView
+        android:id="@+id/textViewNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="120dp"
-        android:ems="10"
-        android:hint="Ingresar Nombre"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtEdad"
+    <TextView
+        android:id="@+id/textViewEdad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:ems="10"
-        android:hint="Ingresar Edad"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="@+id/txtNombre"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintStart_toStartOf="@+id/textViewNombre"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
 
     <Button
-        android:id="@+id/btnAceptar"
+        android:id="@+id/btnFinalizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:onClick="segundaActividad"
-        android:text="Aceptar"
-        app:layout_constraintStart_toStartOf="@+id/txtEdad"
-        app:layout_constraintTop_toBottomOf="@+id/txtEdad" />
+        android:onClick="finalizar"
+        android:text="Finalizar"
+        app:layout_constraintStart_toStartOf="@+id/textViewEdad"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEdad" />
 </androidx.constraintlayout.widget.ConstraintLayout>
