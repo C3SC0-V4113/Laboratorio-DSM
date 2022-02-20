@@ -1,6 +1,7 @@
 package sv.edu.udb.contador_vc190544;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         btnCont.setOnClickListener(clickListener);
 
         initCounter();
+        
+        ModeloNumero modelo=new ViewModelProvider(this).get(ModeloNumero.class);
+        tv_cont.setText(modelo.getNumber()+"");
     }
 
     private void initCounter(){
