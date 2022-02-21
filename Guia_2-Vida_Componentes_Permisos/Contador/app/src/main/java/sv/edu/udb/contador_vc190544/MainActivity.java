@@ -3,6 +3,7 @@ package sv.edu.udb.contador_vc190544;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Contador();
+            Intent intent=new Intent(view.getContext(),ModeloNumero.class);
+
+            intent.putExtra("cont",cont);
+            if (intent.resolveActivity(getPackageManager())!=null){
+                //startActivity(intent);
+            }
         }
     };
 
@@ -30,13 +37,15 @@ public class MainActivity extends AppCompatActivity {
         btnCont.setOnClickListener(clickListener);
 
         initCounter();
-        
-        ModeloNumero modelo=new ViewModelProvider(this).get(ModeloNumero.class);
-        tv_cont.setText(modelo.getNumber()+"");
+
     }
 
     private void initCounter(){
         cont=0;
+        ModeloNumero modelo=new ViewModelProvider(this).get(ModeloNumero.class);
+        if (modelo.getNumber()!=0){
+            cont=modelo.getNumber()
+;        }
         tv_cont.setText(cont+"");
     }
 

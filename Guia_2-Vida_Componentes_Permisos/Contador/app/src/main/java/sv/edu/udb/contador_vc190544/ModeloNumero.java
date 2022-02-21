@@ -1,7 +1,6 @@
 package sv.edu.udb.contador_vc190544;
 
 import android.content.Intent;
-import android.widget.TextView;
 
 import androidx.lifecycle.ViewModel;
 
@@ -16,9 +15,14 @@ public class ModeloNumero extends ViewModel {
         return numerito;
     }
 
+    private void setNumerito(int numerito){
+        this.numerito=numerito;
+    }
+
     private void getNum(){
-        //Intent intent=new Intent();
+        Intent intent=new Intent();
         //numerito= Integer.parseInt(intent.getStringExtra("tv_cont"));
-        numerito=7;
+        //numerito=0;
+        numerito=intent.getIntExtra("cont",0);
     }
 }
