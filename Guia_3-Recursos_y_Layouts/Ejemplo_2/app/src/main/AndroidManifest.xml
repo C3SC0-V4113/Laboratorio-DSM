@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ejemplo_2VC190544">
         <activity
+            android:name=".ejemplo_linear_layout"
+            android:exported="false" />
+        <activity
             android:name=".ejemplo_frame_layout"
             android:exported="false" />
         <activity
