@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Ejemplo 1-VC190544</string>
+    <string name="app_name">Example 1-VC190544</string>
+    <string name="saludo1">Hello User</string>
+    <string name="saludo2">Welcome</string>
 </resources>
