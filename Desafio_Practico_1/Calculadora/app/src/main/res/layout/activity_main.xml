@@ -11,28 +11,83 @@
         android:layout_height="match_parent"
         android:padding="48dp">
 
-        <EditText
-            android:id="@+id/et"
+        <TableLayout
+            android:id="@+id/tablelyt_nmb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese el primer valor"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:layout_centerHorizontal="true" />
+            android:stretchColumns="1">
 
-        <EditText
-            android:id="@+id/editt2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Ingrese el segundo número"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:layout_below="@+id/et"/>
+            <TableRow>
+                <TextView
+                    android:id="@+id/frac1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fracción 1:"
+                    android:textSize="20sp"
+                    android:layout_column="0"/>
+                <TextView
+                    android:id="@+id/frac2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fracción 2:"
+                    android:textSize="20sp"
+                    android:layout_column="3"/>
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:id="@+id/et1f1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:minHeight="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:minWidth="48dp"
+                    android:hint="Numerador"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/et1f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:hint="Numerador"
+                    android:layout_centerHorizontal="true"
+                    android:layout_column="3"/>
+
+            </TableRow>
+            <TableRow>
+                <EditText
+                    android:id="@+id/et2f1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minWidth="48dp"
+                    android:layout_marginTop="20dp"
+                    android:inputType="numberSigned"
+                    android:minHeight="48dp"
+                    android:hint="Denominador"
+                    android:layout_below="@+id/et1f1"
+                    android:layout_column="0"/>
+
+                <EditText
+                    android:id="@+id/et2f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:minWidth="48dp"
+                    android:inputType="numberSigned"
+                    android:minHeight="48dp"
+                    android:hint="Denominador"
+                    android:layout_below="@+id/et1f2"
+                    android:layout_column="3"/>
+            </TableRow>
+        </TableLayout>
 
         <TableLayout
             android:id="@+id/tablelyt"
-            android:layout_below="@+id/editt2"
+            android:layout_below="@+id/tablelyt_nmb"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="1">
@@ -71,15 +126,7 @@
 
         </TableLayout>
 
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Resultado:"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/tablelyt"/>
+
 
     </RelativeLayout>
 
