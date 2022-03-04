@@ -37,7 +37,8 @@
             android:onClick="Finalizar"
             android:text="Finalizar"
             android:layout_below="@+id/tv2"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/red"/>
 
 
     </RelativeLayout>

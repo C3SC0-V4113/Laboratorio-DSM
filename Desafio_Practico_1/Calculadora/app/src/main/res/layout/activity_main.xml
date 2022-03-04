@@ -98,14 +98,16 @@
                     android:onClick="sumar"
                     android:text="SUMAR"
                     android:layout_column="0"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/teal_700"/>
 
                 <Button
                     android:id="@+id/button2"
                     android:onClick="restar"
                     android:text="RESTAR"
                     android:layout_margin="10dp"
-                    android:layout_column="1"/>
+                    android:layout_column="1"
+                    android:backgroundTint="@color/teal_700"/>
             </TableRow>
 
             <TableRow>
@@ -114,14 +116,16 @@
                     android:onClick="multiplicar"
                     android:text="MULTIPLICAR"
                     android:layout_margin="10dp"
-                    android:layout_column="0"/>
+                    android:layout_column="0"
+                    android:backgroundTint="@color/teal_700"/>
 
                 <Button
                     android:id="@+id/button4"
                     android:onClick="division"
                     android:text="DIVIDIR"
                     android:layout_margin="10dp"
-                    android:layout_column="1"/>
+                    android:layout_column="1"
+                    android:backgroundTint="@color/teal_700"/>
             </TableRow>
 
         </TableLayout>

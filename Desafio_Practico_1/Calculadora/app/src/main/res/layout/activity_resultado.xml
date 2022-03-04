@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:onClick="Finalizar"
             android:text="Finalizar"
-            android:layout_below="@+id/tv"/>
+            android:layout_below="@+id/tv"
+            android:backgroundTint="@color/red"/>
 
 
     </RelativeLayout>
