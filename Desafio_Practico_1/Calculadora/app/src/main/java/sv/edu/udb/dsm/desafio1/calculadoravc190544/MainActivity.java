@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText et2f2;
     private double v1;
     private double v2;
-    private TextView tv1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         et2f1=findViewById(R.id.et2f1);
         et1f2=findViewById(R.id.et1f2);
         et2f2=findViewById(R.id.et2f2);
-        tv1=findViewById(R.id.tv);
     }
 
     public void fracciondouble(){
@@ -74,28 +72,24 @@ public class MainActivity extends AppCompatActivity {
         fracciondouble();
         double suma=v1+v2;
         String resu=doublefraccion(suma);
-        tv1.setText(resu);
     }
 
     public void restar(View view) {
         fracciondouble();
         double resta=v1-v2;
         String resu=doublefraccion(resta);
-        tv1.setText(resu);
     }
 
     public void multiplicar(View view) {
         fracciondouble();
         double multiplicacion=v1*v2;
         String resu=doublefraccion(multiplicacion);
-        tv1.setText(resu);
     }
 
     public void division(View view) {
         fracciondouble();
         double dividir=v1/v2;
         String resu=doublefraccion(dividir);
-        tv1.setText(resu);
     }
 
 }
