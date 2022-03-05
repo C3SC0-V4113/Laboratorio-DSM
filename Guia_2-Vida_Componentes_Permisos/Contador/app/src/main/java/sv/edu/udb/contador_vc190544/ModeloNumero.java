@@ -1,28 +1,21 @@
 package sv.edu.udb.contador_vc190544;
 
-import android.content.Intent;
-
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class ModeloNumero extends ViewModel {
-    private int numerito;
+    /**
+     * Creando el método que retornará el
+     * número
+     * https://developer.android.com/topic/libraries/architecture/livedata?hl=es-419
+     */
+    private MutableLiveData<Integer> numerito;
 
-    public int getNumber(){
-        if (numerito==0){
-            numerito=0;
-            getNum();
+    public MutableLiveData<Integer> getNumerito(){
+        if(numerito==null){
+            numerito=new MutableLiveData<Integer>();
         }
         return numerito;
     }
 
-    private void setNumerito(int numerito){
-        this.numerito=numerito;
-    }
-
-    private void getNum(){
-        Intent intent=new Intent();
-        //numerito= Integer.parseInt(intent.getStringExtra("tv_cont"));
-        //numerito=0;
-        numerito=intent.getIntExtra("cont",0);
-    }
 }
