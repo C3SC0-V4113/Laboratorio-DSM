@@ -10,14 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TableLayout
+            android:id="@+id/tbllyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="30dp"
+            android:stretchColumns="0">
+            <TableRow>
+                <TextView
+                    android:id="@+id/number1"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:layout_column="0"
+                    android:text=""
+                    android:background="@color/azul_calcu"
+                    android:backgroundTint="@color/azul_calcu"/>
+                <TextView
+                    android:id="@+id/operacion"
+                    android:padding="10dp"
+                    android:textColor="@color/white"
+                    android:layout_column="1"
+                    android:text="                                      "
+                    android:background="@color/rojo_calcu"
+                    android:backgroundTint="@color/rojo_calcu"/>
+            </TableRow>
+        </TableLayout>
+
         <EditText
             android:id="@+id/Calc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tbllyt"
             android:hint="Calculadora..."
-            android:textSize="30sp"
+            android:inputType="numberDecimal"
             android:minHeight="70dp"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textSize="30sp" />
 
         <GridLayout
             android:id="@+id/grlyt"
