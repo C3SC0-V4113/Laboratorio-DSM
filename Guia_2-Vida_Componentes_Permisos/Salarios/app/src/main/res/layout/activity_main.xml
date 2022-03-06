@@ -26,6 +26,7 @@
             android:inputType="number"
             android:layout_below="@+id/et_name"/>
         <Button
+            android:id="@+id/btn_calcular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calcular"
