@@ -29,10 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener clickListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            /**
-             * Se ejecuta el método de contador. Independientemente del resultado
-             * se guarda el valor en el ViewModel
-             */
             PasandoDatos(view);
         }
     };
