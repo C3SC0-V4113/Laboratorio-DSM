@@ -16,39 +16,39 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class Registro extends AppCompatActivity {
 
     private EditText emailET,passwordET;
-    private Button loginBtn, registerBtn;
+    private Button regBtn,exitBtn;
 
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registro);
 
         mAuth=FirebaseAuth.getInstance();
 
-        inicializandoUI();
+        InicializandoUI();
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Registro.class);
-                startActivity(intent);
+                registerNewUser();
             }
         });
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginUserAccount();
+                Intent intent=new Intent(Registro.this,MainActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void loginUserAccount(){
+    private void registerNewUser(){
         String email,password;
         email=emailET.getText().toString();
         password=passwordET.getText().toString();
@@ -62,27 +62,25 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Inicio de Sesión Exitoso",Toast.LENGTH_SHORT).show();
-
-                    Intent intent=new Intent(MainActivity.this,Dashboard.class);
+                    Toast.makeText(Registro.this, "Registro Completado", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(Registro.this,MainActivity.class);
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "El Inicio de Sesión ha fallado! Porfavor, volver a intentar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Registro.this, "El Registro ha fallado! Intentelo nuevamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void inicializandoUI(){
+    private void InicializandoUI(){
         emailET=findViewById(R.id.etUser);
         passwordET=findViewById(R.id.etPassword);
-
-        loginBtn=findViewById(R.id.btnLog);
-        registerBtn=findViewById(R.id.btnReg);
+        regBtn=findViewById(R.id.btnReg);
+        exitBtn=findViewById(R.id.btnExit);
     }
 }
