@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".DashboardAdmin">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="26dp"
+            android:layout_marginEnd="26dp"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:fabSize="normal" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
