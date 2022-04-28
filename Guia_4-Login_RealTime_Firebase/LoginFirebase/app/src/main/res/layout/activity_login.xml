@@ -13,18 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cuenta"/>
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Correo" />
+        android:hint="Correo"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/login"

@@ -16,11 +16,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
-    private Button loginBtn, registerBtn;
+    private Button loginBtn, registerBtn,loginGoogle;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -30,10 +31,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /**
+         * Obteniendo la instancia de Firebase
+         */
         mAuth=FirebaseAuth.getInstance();
 
+        /**
+         * Se inicializa la UI del login
+         */
         initializeUI();
 
+        /**
+         * Listener de click en botón de registro
+         * unicamente cambia de Activity
+         */
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,12 +53,40 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Listener de click en botón de Registro
+         */
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginUserAccount();
             }
         });
+
+        /**
+         * Listener de Login con Google
+         */
+        loginGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginUserAccount();
+            }
+        });
+    }
+
+    /**
+     * Al inicializar la aplicación se verifica si ya habia
+     * una sesión iniciada
+     */
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Toast.makeText(LoginActivity.this, "Inicio de Sesión Exitoso ", Toast.LENGTH_SHORT).show();
+        progressBar.setVisibility(View.GONE);
+
+        Intent intent=new Intent(LoginActivity.this,DashboardActivity.class);
+        startActivity(intent);
     }
     
     private void loginUserAccount(){
@@ -90,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
         
         loginBtn=findViewById(R.id.login);
         registerBtn=findViewById(R.id.register);
+        loginGoogle=findViewById(R.id.sign_in_button);
         progressBar=findViewById(R.id.progressBar);
     }
 }

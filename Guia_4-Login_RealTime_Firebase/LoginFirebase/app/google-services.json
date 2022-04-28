@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "568179553042-ndiebg91g6jfu6sup9l6bg6krhlhvton.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sv.edu.udb.dsm.guia4.loginfirebase_vc190544",
+            "certificate_hash": "e33bb31b9482f4a7fb01c149cf4a21e6af42082e"
+          }
+        },
+        {
           "client_id": "568179553042-greiifvf7d6ktnh0uqmujgjvpe14btc5.apps.googleusercontent.com",
           "client_type": 3
         }
