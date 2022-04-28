@@ -1,18 +1,35 @@
 package sv.edu.udb.dsm.guia4.loginfirebase_vc190544;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
+import com.google.android.gms.auth.api.identity.BeginSignInResult;
+import com.google.android.gms.auth.api.identity.Identity;
+import com.google.android.gms.auth.api.identity.SignInClient;
+import com.google.android.gms.auth.api.identity.SignInCredential;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,10 +38,26 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
-    private Button loginBtn, registerBtn,loginGoogle;
+    private Button loginBtn, registerBtn;
+    private SignInButton loginGoogle;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
+
+    private GoogleSignInOptions gso;
+    private GoogleSignInClient gsc;
+
+    /**
+     * Agregando información para el
+     * OneTap de Google
+     */
+    private SignInClient oneTapClient;
+    private BeginSignInRequest signInRequest;
+
+    // ...
+    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private boolean showOneTapUI = true;
+    // ...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +73,11 @@ public class LoginActivity extends AppCompatActivity {
          * Se inicializa la UI del login
          */
         initializeUI();
+
+        /**
+         * Se inicializa el OneTap
+         */
+        //setTap();
 
         /**
          * Listener de click en botón de registro
@@ -69,7 +107,79 @@ public class LoginActivity extends AppCompatActivity {
         loginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginUserAccount();
+                gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id))
+                        .requestEmail().build();
+                gsc = GoogleSignIn.getClient(getApplicationContext(),gso);
+                startActivityForResult(gsc.getSignInIntent(),100);
+            }
+        });
+    }
+
+    /**
+     * On Activity Result
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==100){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try{
+                task.getResult(ApiException.class);
+                /*SharedPreferences.Editor edit = settings.edit();
+                edit.putString("email",task.getResult().getEmail());
+
+                edit.apply();*/
+                //Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                //progressBar.setVisibility(View.GONE);
+
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                finish();
+
+            }catch (ApiException e){
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(),"Algo salio mal",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    /**
+     * Funcion para que funcione el OneTap
+     */
+    public void setTap(){
+        oneTapClient = Identity.getSignInClient(this);
+        signInRequest = BeginSignInRequest.builder()
+                .setPasswordRequestOptions(BeginSignInRequest.PasswordRequestOptions.builder()
+                        .setSupported(true)
+                        .build())
+                .setGoogleIdTokenRequestOptions(BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                        .setSupported(true)
+                        // Your server's client ID, not your Android client ID.
+                        //.setServerClientId(getString(R.string.default_web_client_id))
+                        // Only show accounts previously used to sign in.
+                        .setFilterByAuthorizedAccounts(true)
+                        .build())
+                // Automatically sign in when exactly one credential is retrieved.
+                .setAutoSelectEnabled(true)
+                .build();
+
+        oneTapClient.beginSignIn(signInRequest).addOnSuccessListener(this, new OnSuccessListener<BeginSignInResult>() {
+            @Override
+            public void onSuccess(BeginSignInResult beginSignInResult) {
+                try {
+                    startIntentSenderForResult(
+                            beginSignInResult.getPendingIntent().getIntentSender(), REQ_ONE_TAP,
+                            null, 0, 0, 0);
+                }catch (IntentSender.SendIntentException e){
+                    Log.e("Error en OneTap: ", "Couldn't start One Tap UI: " + e.getLocalizedMessage());
+                }
+            }
+        }).addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // No Google Accounts found. Just continue presenting the signed-out UI.
+                Log.d("Peligro: ", e.getLocalizedMessage());
             }
         });
     }
@@ -78,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
      * Al inicializar la aplicación se verifica si ya habia
      * una sesión iniciada
      */
-    public void onStart() {
+    /*public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -87,7 +197,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent intent=new Intent(LoginActivity.this,DashboardActivity.class);
         startActivity(intent);
-    }
+    }*/
     
     private void loginUserAccount(){
         progressBar.setVisibility(View.VISIBLE);
