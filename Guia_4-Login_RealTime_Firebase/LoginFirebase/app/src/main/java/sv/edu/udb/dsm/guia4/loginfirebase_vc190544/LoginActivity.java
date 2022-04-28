@@ -16,6 +16,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
 import com.google.android.gms.auth.api.identity.Identity;
@@ -35,11 +40,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailTV, passwordTV;
     private Button loginBtn, registerBtn;
     private SignInButton loginGoogle;
+    private LoginButton loginButton;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -59,6 +67,10 @@ public class LoginActivity extends AppCompatActivity {
     private boolean showOneTapUI = true;
     // ...
 
+    private static final String EMAIL = "email";
+
+    private CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +80,11 @@ public class LoginActivity extends AppCompatActivity {
          * Obteniendo la instancia de Firebase
          */
         mAuth=FirebaseAuth.getInstance();
+
+        /**
+         * Instancia de Facebook
+         */
+        callbackManager = CallbackManager.Factory.create();
 
         /**
          * Se inicializa la UI del login
@@ -114,6 +131,26 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(gsc.getSignInIntent(),100);
             }
         });
+
+        /**
+         * Listener de Login de Facebook
+         */
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(LoginActivity.this, "Facebook hecho!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(LoginActivity.this, "Facebook cancelado!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(@NonNull FacebookException e) {
+                Toast.makeText(LoginActivity.this, "Facebook falló!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -121,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==100){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -234,12 +272,30 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void initializeUI(){
+        /**
+         * EditText para agregar correo y
+         * contraseña de correo electronico
+         */
         emailTV=findViewById(R.id.email);
         passwordTV=findViewById(R.id.password);
-        
+
+        /**
+         * Lo minimo requerido para un login
+         * con correo y contraseña
+         */
         loginBtn=findViewById(R.id.login);
         registerBtn=findViewById(R.id.register);
-        loginGoogle=findViewById(R.id.sign_in_button);
         progressBar=findViewById(R.id.progressBar);
+
+        /**
+         * Botón de Login de Google
+         */
+        loginGoogle=findViewById(R.id.sign_in_button);
+
+        /**
+         * Botón de Login de Facebook
+         */
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList(EMAIL));
     }
 }
