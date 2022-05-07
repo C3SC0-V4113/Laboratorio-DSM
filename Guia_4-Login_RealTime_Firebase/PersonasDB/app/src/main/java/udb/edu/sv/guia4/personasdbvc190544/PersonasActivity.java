@@ -62,6 +62,8 @@ public class PersonasActivity extends AppCompatActivity {
                 intent.putExtra("dui",personas.get(i).getDui());
                 intent.putExtra("fecha",personas.get(i).getFecha());
                 intent.putExtra("genero",personas.get(i).getGenero());
+                intent.putExtra("peso",personas.get(i).getPeso());
+                intent.putExtra("altura",personas.get(i).getAltura());
                 startActivity(intent);
             }
         });

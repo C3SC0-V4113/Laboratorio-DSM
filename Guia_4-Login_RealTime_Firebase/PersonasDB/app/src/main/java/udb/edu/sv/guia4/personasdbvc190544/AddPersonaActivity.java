@@ -15,9 +15,9 @@ import android.widget.RadioButton;
 
 public class AddPersonaActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
 
-    EditText edtDUI, edtNombre;
+    EditText edtDUI, edtNombre, edtPeso, edtAltura;
     RadioButton rbtnMasc,rbtnFem,rbtnNo;
-    String key="",nombre="",dui="",accion="",genero="",fecha="";
+    String key="",nombre="",dui="",accion="",genero="",fecha="",peso="",altura="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,8 @@ public class AddPersonaActivity extends FragmentActivity implements DatePickerDi
         rbtnMasc=findViewById(R.id.Masculino);
         rbtnFem=findViewById(R.id.Femenino);
         rbtnNo=findViewById(R.id.No);
+        edtAltura=findViewById(R.id.edtAltura);
+        edtPeso=findViewById(R.id.edtPeso);
 
 
 
@@ -43,9 +45,13 @@ public class AddPersonaActivity extends FragmentActivity implements DatePickerDi
         nombre=datos.getString("nombre");
         fecha=datos.getString("fecha");
         accion=datos.getString("accion");
+        peso=datos.getString("peso");
+        altura=datos.getString("altura");
         // Agregando simples String
         edtDUI.setText(dui);
         edtNombre.setText(nombre);
+        edtPeso.setText(peso);
+        edtAltura.setText(altura);
         //Agregando Genero
         switch (genero){
             case "Masculino":
@@ -94,8 +100,10 @@ public class AddPersonaActivity extends FragmentActivity implements DatePickerDi
         String dui = edtDUI.getText().toString();
         String fecha=date;
         String genero=genre;
+        String peso=edtPeso.getText().toString();
+        String altura=edtAltura.getText().toString();
         // Se forma objeto persona
-        Persona persona = new Persona(dui,nombre,genero,fecha);
+        Persona persona = new Persona(dui,nombre,genero,fecha,peso,altura);
 
         if (accion.equals("a")) { //Agregar usando push()
             PersonasActivity.refPersonas.push().setValue(persona);

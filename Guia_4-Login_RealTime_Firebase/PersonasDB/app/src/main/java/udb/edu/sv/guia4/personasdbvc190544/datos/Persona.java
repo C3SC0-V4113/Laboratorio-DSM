@@ -5,16 +5,20 @@ public class Persona {
     private String nombre;
     private String genero;
     private String fecha;
+    private String peso;
+    private String altura;
     String key;
 
     public Persona() {
     }
 
-    public Persona(String dui, String nombre, String genero, String fecha) {
+    public Persona(String dui, String nombre, String genero, String fecha, String peso, String altura) {
         this.dui = dui;
         this.nombre = nombre;
         this.fecha=fecha;
         this.genero=genero;
+        this.peso=peso;
+        this.altura=altura;
     }
 
 
@@ -56,5 +60,17 @@ public class Persona {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getPeso(){ return peso; }
+
+    public void setPeso(String peso) { this.peso=peso; }
+
+    public String getAltura() {
+        return altura;
+    }
+
+    public void setAltura(String altura) {
+        this.altura = altura;
     }
 }
