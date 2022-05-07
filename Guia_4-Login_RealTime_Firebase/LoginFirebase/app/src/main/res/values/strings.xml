@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">LoginFirebase-VC190544</string>
     <string name="facebook_app_id">372372334925821</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="fb_login_protocol_scheme">123456</string>
     <string name="facebook_client_token">ff6f9544e6b8481145c86fb47f430526</string>
 </resources>
