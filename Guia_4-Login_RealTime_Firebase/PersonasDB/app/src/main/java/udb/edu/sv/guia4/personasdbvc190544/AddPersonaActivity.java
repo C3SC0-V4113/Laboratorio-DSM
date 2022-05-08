@@ -53,18 +53,19 @@ public class AddPersonaActivity extends FragmentActivity implements DatePickerDi
         edtPeso.setText(peso);
         edtAltura.setText(altura);
         //Agregando Genero
-        switch (genero){
-            case "Masculino":
-                rbtnMasc.setChecked(true);
-                break;
-            case "Femenino":
-                rbtnFem.setChecked(true);
-                break;
-            case "No":
-                rbtnNo.setChecked(true);
-                break;
+        if (genero!=null){
+            switch (genero){
+                case "Masculino":
+                    rbtnMasc.setChecked(true);
+                    break;
+                case "Femenino":
+                    rbtnFem.setChecked(true);
+                    break;
+                case "No":
+                    rbtnNo.setChecked(true);
+                    break;
+            }
         }
-
     }
 
     String date;
