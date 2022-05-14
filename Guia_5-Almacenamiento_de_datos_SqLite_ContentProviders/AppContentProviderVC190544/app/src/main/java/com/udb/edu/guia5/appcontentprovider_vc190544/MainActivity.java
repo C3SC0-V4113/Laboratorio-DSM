@@ -2,6 +2,7 @@ package com.udb.edu.guia5.appcontentprovider_vc190544;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.app.ListActivity;
@@ -10,6 +11,9 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends ListActivity implements
         LoaderCallbacks<Cursor> {
@@ -23,6 +27,16 @@ public class MainActivity extends ListActivity implements
         adaptador = new StudentsAdapter(this);
         setListAdapter(adaptador);
         getLoaderManager().initLoader(0, null, this);
+
+        FloatingActionButton fab_agregar=findViewById(R.id.fab_agregar);
+
+        fab_agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(getBaseContext(),AddStudent.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
