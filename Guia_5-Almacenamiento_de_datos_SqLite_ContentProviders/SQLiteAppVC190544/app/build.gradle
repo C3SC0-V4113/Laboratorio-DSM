@@ -25,6 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.udb.edu.guia5.sqliteapp_vc190544'
 }
 
 dependencies {
