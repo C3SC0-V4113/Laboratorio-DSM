@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.udb.edu.guia5.appcontentprovider_vc190544"
+            android:name="com.udb.edu.guia5.appcontentprovider_vc190544.StudentsContentProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>
