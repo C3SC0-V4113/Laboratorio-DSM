@@ -106,11 +106,13 @@ public class StudentsContentProvider extends ContentProvider {
         }
 
         // Si es necesario, verifica los valores
+        Log.e("insert: ",contentValues.toString() );
 
         // Inserción de nueva fila
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         long rowId = db.insert(StudentsContract.STUDENTS,
                 null, contentValues);
+        Log.e( "row id: ", String.valueOf(rowId));
         if (rowId > 0) {
             Uri uri_actividad =
                     ContentUris.withAppendedId(

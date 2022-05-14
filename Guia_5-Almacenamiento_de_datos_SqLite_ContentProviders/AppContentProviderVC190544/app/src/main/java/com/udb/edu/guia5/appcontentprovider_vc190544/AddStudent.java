@@ -38,7 +38,6 @@ public class AddStudent extends AppCompatActivity {
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AddStudent.this, "Vamoooos", Toast.LENGTH_SHORT).show();
                 AddingStudent();
             }
         });
@@ -56,7 +55,7 @@ public class AddStudent extends AppCompatActivity {
         String nombre=etnombre.getText().toString();
         String apellido=etapellido.getText().toString();
         ContentValues values = new ContentValues();
-        Toast.makeText(this, carnet+"-"+nombre+"-"+apellido, Toast.LENGTH_SHORT).show();
+        values.clear();
         values.put(StudentsContract.Columnas.NOMBRE, nombre);
         values.put(StudentsContract.Columnas.APELLIDO, apellido);
         values.put(StudentsContract.Columnas.CARNET, carnet);

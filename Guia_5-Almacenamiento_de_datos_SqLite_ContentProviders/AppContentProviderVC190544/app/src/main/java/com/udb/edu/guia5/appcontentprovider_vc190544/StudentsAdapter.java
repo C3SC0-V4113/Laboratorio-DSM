@@ -17,7 +17,6 @@ public class StudentsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
-        if (cursor!=null && cursor.moveToFirst()){
             TextView carnet = view.findViewById(R.id.carnet_text);
             carnet.setText(cursor.getString(
                     cursor.getColumnIndex(StudentsContract.Columnas.CARNET)));
@@ -29,7 +28,6 @@ public class StudentsAdapter extends CursorAdapter {
             TextView apellido = view.findViewById(R.id.apellido_text);
             apellido.setText(cursor.getString(
                     cursor.getColumnIndex(StudentsContract.Columnas.APELLIDO)));
-        }
 
     }
 
