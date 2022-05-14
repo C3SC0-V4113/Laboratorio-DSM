@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "442335337768",
+    "project_id": "desafio-practico-2-dsm",
+    "storage_bucket": "desafio-practico-2-dsm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442335337768:android:a6225f7b1dd2201808041d",
+        "android_client_info": {
+          "package_name": "com.udb.edu.desafio2.exmenesyevaluaciones_vc190544"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442335337768-vri0lanas4t291irqtkst8sir4d4th5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAshvsy7PQwKSz5BoQ3tROjjyMAz_3nWRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442335337768-vri0lanas4t291irqtkst8sir4d4th5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
