@@ -3,6 +3,7 @@ package com.udb.edu.guia6.retrofit_vc190544;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.udb.edu.guia6.retrofit_vc190544.databinding.ActivityAgregarBinding;
@@ -75,13 +76,16 @@ public class AgregarActivity extends AppCompatActivity {
         call.enqueue(new Callback<Respuesta>() {
             @Override
             public void onResponse(Call<Respuesta> call, Response<Respuesta> response) {
+                Respuesta respuesta = response.body();
+                String mensaje = respuesta.getMensaje().toString();
+                Log.i("INFORMACION", mensaje);
                 if (response.code()==200) {
-                    Toast.makeText(getBaseContext(),"Registro Agregado satisfactoriamente",
+                    Toast.makeText(getBaseContext(),mensaje,
                             Toast.LENGTH_LONG ).show();
                     finish();
                 } else
                 {
-                    Toast.makeText(getBaseContext(),"Error : " + response.code(),
+                    Toast.makeText(getBaseContext(),"Error : " + mensaje + " Codigo: " + response.code(),
                             Toast.LENGTH_LONG ).show();
                 }
             }
@@ -105,8 +109,10 @@ public class AgregarActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Respuesta> call, Response<Respuesta> response) {
                 Respuesta respuesta = response.body();
+                String mensaje = respuesta.getMensaje().toString();
+                Log.i("INFORMACION", mensaje);
                 if (respuesta.getResultado()==1) {
-                    Toast.makeText(getBaseContext(),"Registro actualizado",
+                    Toast.makeText(getBaseContext(),mensaje,
                             Toast.LENGTH_LONG).show();
                     finish();
                 } else {
